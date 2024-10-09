@@ -30,7 +30,7 @@ void print(string message) {
 
 bool vitalsOk(vitalSigns vitalSign) {
     bool vitalOk = true;
-  if (isNormalTemparature(vitalSign.temperature)) {
+  if (!isNormalTemparature(vitalSign.temperature)) {
       print("Temperature is critical!\n");
       vitalOk = false;
   } else if (!isNormalPulseRate(vitalSign.pulseRate)) {
