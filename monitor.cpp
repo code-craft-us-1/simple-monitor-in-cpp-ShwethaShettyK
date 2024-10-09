@@ -3,21 +3,22 @@
 #include <thread>
 #include <chrono>
 #include <iostream>
+#include <string>
 using std::cout, std::flush, std::this_thread::sleep_for, std::chrono::seconds, std::string;
 
-bool isNormalTemparature(float temperature){
+bool isNormalTemparature(float temperature) {
     return ((temperature > 102 || temperature < 95)) ? false : true;
 }
 
-bool isNormalPulseRate(float pulseRate){
+bool isNormalPulseRate(float pulseRate) {
     return (pulseRate < 60 || pulseRate > 100) ? false : true;
 }
 
-bool isNormalOxygenSaturation(float spo2){
+bool isNormalOxygenSaturation(float spo2) {
     return (spo2 < 90) ? false : true;
 }
 
-void print(string message){
+void print(string message) {
     cout << message;
     for (int i = 0; i < 6; i++) {
         cout << "\r* " << flush;
