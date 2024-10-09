@@ -14,6 +14,5 @@ TEST(Monitor, NotOkWhenAnyVitalIsOffRange) {
 
   vitalSign = { 103, 70, 98 };
   ASSERT_FALSE(vitalsOk(vitalSign));
-
 }
 
