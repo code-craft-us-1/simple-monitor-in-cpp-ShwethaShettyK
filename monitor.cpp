@@ -3,36 +3,42 @@
 #include <thread>
 #include <chrono>
 #include <iostream>
-using std::cout, std::flush, std::this_thread::sleep_for, std::chrono::seconds;
+#include <string>
+using std::cout, std::flush, std::this_thread::sleep_for, std::chrono::seconds, std::string;
 
-int vitalsOk(float temperature, float pulseRate, float spo2) {
-  if (temperature > 102 || temperature < 95) {
-    cout << "Temperature is critical!\n";
+bool isNormalTemparature(float temperature) {
+    return ((temperature > 102 || temperature < 95)) ? false : true;
+}
+
+bool isNormalPulseRate(float pulseRate) {
+    return (pulseRate < 60 || pulseRate > 100) ? false : true;
+}
+
+bool isNormalOxygenSaturation(float spo2) {
+    return (spo2 < 90) ? false : true;
+}
+
+void print(string message) {
+    cout << message;
     for (int i = 0; i < 6; i++) {
-      cout << "\r* " << flush;
-      sleep_for(seconds(1));
-      cout << "\r *" << flush;
-      sleep_for(seconds(1));
+        cout << "\r* " << flush;
+        sleep_for(seconds(1));
+        cout << "\r *" << flush;
+        sleep_for(seconds(1));
     }
-    return 0;
-  } else if (pulseRate < 60 || pulseRate > 100) {
-    cout << "Pulse Rate is out of range!\n";
-    for (int i = 0; i < 6; i++) {
-      cout << "\r* " << flush;
-      sleep_for(seconds(1));
-      cout << "\r *" << flush;
-      sleep_for(seconds(1));
-    }
-    return 0;
-  } else if (spo2 < 90) {
-    cout << "Oxygen Saturation out of range!\n";
-    for (int i = 0; i < 6; i++) {
-      cout << "\r* " << flush;
-      sleep_for(seconds(1));
-      cout << "\r *" << flush;
-      sleep_for(seconds(1));
-    }
-    return 0;
+}
+
+bool vitalsOk(vitalSigns vitalSign) {
+    bool vitalOk = true;
+  if (!isNormalTemparature(vitalSign.temperature)) {
+      print("Temperature is critical!\n");
+      vitalOk = false;
+  } else if (!isNormalPulseRate(vitalSign.pulseRate)) {
+      print("Pulse Rate is out of range!\n");
+      vitalOk = false;
+  } else if (!isNormalOxygenSaturation(vitalSign.spo2)) {
+      print("Oxygen Saturation out of range!\n");
+      vitalOk = false;
   }
-  return 1;
+  return vitalOk;
 }
