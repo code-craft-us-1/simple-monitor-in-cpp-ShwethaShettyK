@@ -14,7 +14,7 @@ bool isNormalPulseRate(float pulseRate) {
     return (pulseRate >= 60 && pulseRate <= 100);
 }
 
-bool isNormalOxygenSaturation(float spo2) {
+bool isNormalO2Saturation(float spo2) {
     return (spo2 >= 90);
 }
 
@@ -39,5 +39,5 @@ bool checkVital(bool (*checkFunction)(float), float value, const char* warning) 
 bool vitalsOk(vitalSigns vitalSign) {
     return checkVital(isNormalTemparature, vitalSign.temperature, "Temperature is critical!\n") &&
            checkVital(isNormalPulseRate, vitalSign.pulseRate, "Pulse Rate is out of range!\n") &&
-           checkVital(isNormalOxygenSaturation, vitalSign.spo2, "Oxygen Saturation out of range!\n");
+           checkVital(isNormalO2Saturation, vitalSign.spo2, "Oxygen Saturation out of range!\n");
 }
