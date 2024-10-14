@@ -32,11 +32,11 @@ bool vitalsOk(vitalSigns vitalSign) {
   if (!isNormalTemparature(vitalSign.temperature)) {
       print("Temperature is critical!\n");
       return false;
-  } 
+  }
   if (!isNormalPulseRate(vitalSign.pulseRate)) {
       print("Pulse Rate is out of range!\n");
       return  false;
-  } 
+  }
   if (!isNormalOxygenSaturation(vitalSign.spo2)) {
       print("Oxygen Saturation out of range!\n");
       return false;
