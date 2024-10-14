@@ -7,15 +7,15 @@
 using std::cout, std::flush, std::this_thread::sleep_for, std::chrono::seconds, std::string;
 
 bool isNormalTemparature(float temperature) {
-    return ((temperature > 102 || temperature < 95)) ? false : true;
+    return !((temperature > 102 || temperature < 95));
 }
 
 bool isNormalPulseRate(float pulseRate) {
-    return (pulseRate < 60 || pulseRate > 100) ? false : true;
+    return !(pulseRate < 60 || pulseRate > 100);
 }
 
 bool isNormalOxygenSaturation(float spo2) {
-    return (spo2 < 90) ? false : true;
+    return !(spo2 < 90);
 }
 
 void print(string message) {
