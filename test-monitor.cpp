@@ -3,8 +3,7 @@
 #include "gtest/gtest.h"
 
 TEST(Monitor, TestLowOxygenSaturation) {
-  vitalSigns vitalSign = { 99, 102, 70 };
-  ASSERT_FALSE(vitalsOk(vitalSign));
+   ASSERT_FALSE(vitalsOk({ 99, 102, 70 }));
 }
 TEST(Monitor, TestNormalVitals) {
   vitalSigns vitalSign = { 98.1, 70, 98 };
