@@ -29,16 +29,17 @@ void print(string message) {
 }
 
 bool vitalsOk(vitalSigns vitalSign) {
-    bool vitalOk = true;
   if (!isNormalTemparature(vitalSign.temperature)) {
       print("Temperature is critical!\n");
-      vitalOk = false;
-  } else if (!isNormalPulseRate(vitalSign.pulseRate)) {
+      return false;
+  } 
+  if (!isNormalPulseRate(vitalSign.pulseRate)) {
       print("Pulse Rate is out of range!\n");
-      vitalOk = false;
-  } else if (!isNormalOxygenSaturation(vitalSign.spo2)) {
+      return  false;
+  } 
+  if (!isNormalOxygenSaturation(vitalSign.spo2)) {
       print("Oxygen Saturation out of range!\n");
-      vitalOk = false;
+      return false;
   }
-  return vitalOk;
+  return true;
 }
