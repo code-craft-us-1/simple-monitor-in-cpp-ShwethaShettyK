@@ -7,15 +7,15 @@ TEST(Monitor, TestLowOxygenSaturation) {
   ASSERT_FALSE(vitalsOk(vitalSign));
 }
 TEST(Monitor, TestNormalVitals) {
-  vitalSign = { 98.1, 70, 98 };
+  vitalSigns vitalSign = { 98.1, 70, 98 };
   ASSERT_TRUE(vitalsOk(vitalSign));
 }
 TEST(Monitor, TestLowPulseRate) {
-  vitalSign = { 98.1, 55, 98 };
+  vitalSigns vitalSign = { 98.1, 55, 98 };
   ASSERT_FALSE(vitalsOk(vitalSign));
 }
 TEST(Monitor, TestHighTemperature) {
-  vitalSign = { 103, 70, 98 };
+  vitalSigns vitalSign = { 103, 70, 98 };
   ASSERT_FALSE(vitalsOk(vitalSign));
 }
 
