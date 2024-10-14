@@ -28,18 +28,16 @@ void print(string message) {
     }
 }
 
+bool checkVital(bool (*checkFunction)(float), float value, const char* warning) {
+    if (!checkFunction(value)) {
+        print(warning);
+        return false;
+    }
+    return true;
+}
+
 bool vitalsOk(vitalSigns vitalSign) {
-  if (!isNormalTemparature(vitalSign.temperature)) {
-      print("Temperature is critical!\n");
-      return false;
-  }
-  if (!isNormalPulseRate(vitalSign.pulseRate)) {
-      print("Pulse Rate is out of range!\n");
-      return  false;
-  }
-  if (!isNormalOxygenSaturation(vitalSign.spo2)) {
-      print("Oxygen Saturation out of range!\n");
-      return false;
-  }
-  return true;
+    return checkVital(isNormalTemparature, vitalSign.temperature, "Temperature is critical!\n") &&
+           checkVital(isNormalPulseRate, vitalSign.pulseRate, "Pulse Rate is out of range!\n") &&
+           checkVital(isNormalOxygenSaturation, vitalSign.spo2, "Oxygen Saturation out of range!\n");
 }
